@@ -1,0 +1,80 @@
+<div class="moment" *ngIf="moment; else paginaNaoEcontrada">
+    <h1>{{ moment.title }}</h1>
+    <img 
+        src="{{ApiUrl}}uploads/{{moment.image}}" 
+        alt="Imagem do momento {{ moment.title }}" 
+        (click)="openModal()"
+    >
+    
+    <div class="about-moment">
+        <h3>Sobre este momento:</h3>
+        <p>{{ moment.description }}</p>
+    </div>
+
+    <div class="about-moment">
+        <h4>Data:</h4>
+        <p class="data">{{ moment.date | date: 'dd/MM/yyyy' }}</p>
+    </div>
+    
+    <div class="actions">
+        <h3>Ações: </h3>
+        <a routerLink="/" class="back-btn">
+            <fa-icon [icon]="faArrowLeft"></fa-icon> Voltar
+        </a>
+        <a [routerLink]="['/moments/edit', moment.id]" class="edit-btn">
+           <fa-icon [icon]="faEdit"></fa-icon> Editar
+        </a>
+        <button class="remove-btn" (click)="removeMoments(moment.id!)">
+            <fa-icon [icon]="faTimes"></fa-icon> Excluir
+        </button>
+    </div>
+    
+    <div class="comments">
+        <h3>Comentários ({{ moment.comments!.length > 0 ? moment.comments!.length : 0 }})</h3>
+        <div *ngIf="moment.comments!.length > 0; else noComments">
+            <div class="comment-container" *ngFor="let comment of moment.comments">
+                <p class="comment"> {{ comment.text }}</p>
+                <p class="author"><span>por:</span> {{ comment.username }}</p>
+                <button (click)="removeComments(moment.id!, comment.id)" class="remove-btn remove-coments">
+                    <fa-icon [icon]="faTimes"></fa-icon> Excluir Comentário
+                </button>
+            </div>
+        </div>
+
+        <ng-template #noComments>
+            <p>Não há comentários</p>
+        </ng-template>
+    </div>
+    <div class="comment-form">
+            <h3>Deixe um comentário: </h3>
+    </div>
+    <form [formGroup]="commentForm" #formDir="ngForm" (ngSubmit)="onSubmit(formDir)">
+        <div class="form-group">
+            <label for="text">Comentário:</label>
+            <textarea formControlName="text" placeholder="Digite seu comentário: " required></textarea> 
+            <div *ngIf="text.invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="text.errors?.['required']">O texto é obrigatório.</p>
+            </div>
+        </div>
+            
+        <div class="form-group">
+            <label for="username">Nome:</label>
+            <input formControlName="username" type="text" placeholder="Digite seu nome" required>
+            <div *ngIf="username.invalid && formDir.submitted" class="validation-error">
+                <p *ngIf="username.errors?.['required']">O nome é obrigatório.</p>
+            </div>
+        </div>
+        <input type="submit" value="Comentar" class="coment-btn">
+    </form>
+</div>
+
+<!-- Modal de imagem ampliada -->
+<div class="modal" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-content">
+        <img [src]="ApiUrl + 'uploads/' + moment?.image" alt="Imagem ampliada do momento {{ moment?.title }}">
+    </div>
+</div>
+
+<ng-template #paginaNaoEcontrada>
+    <h2 class="paginaNaoEcontrada">Página não encontrada</h2>
+</ng-template>

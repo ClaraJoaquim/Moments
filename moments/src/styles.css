@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --dourado-principal: #dec129;
+    --cinza-principal: #444;
+    --fonte-principal: Montserrat;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: var(--fonte-principal);
+    box-sizing: border-box;
+    color: var(--cinza-principal);
+}
+
+a {
+    text-decoration: none;
+    color: var(--cinza-principal);
+    transition: 0.45;
+}
+
+a:hover {
+    color: var(--dourado-principal)
+}
+
+/* FORM */
+
+form {
+    width: 450px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 0.4em;
+}
+
+.form-grup input,
+.form-grup textarea {
+    padding: 0.6em;
+    color: #777;
+    font-size: 0.8em;
+}
+
+input[type="submit"] {
+    background-color: #efefef;
+    border: 2px solid transparent;
+    padding: 0.6em 1em;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+input[type="submit"]:hover {
+    color:#dec129;
+    border-color: #dec129;
+    background-color: transparent;
+}
+
+input[type="text"]{
+    border-radius: 4px;
+    padding: 5px 2px;
+    border: 1px solid #444;
+}
+
+textarea{
+    border-radius: 4px;
+    padding: 5px 0 0 5px;
+    border: 1px solid #444;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+input[type="date"]{
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #444;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #efefef;
+    color: #444;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.custom-file-upload:hover {
+    background-color: #444;
+    color: #efefef;
+    transition: 0.4s;
+}
+
+.validation-error p {
+    color: #DC3545;
+    margin-top: 0.4em;
+    border-left: 3px solid #DC3545;
+    padding-left: 0.2em;
+}
+
+/* BUTTONS */
+
+.edit-btn,
+.remove-btn, 
+.back-btn {
+    border: 1px solid #efefef;
+    padding: 0.4em 1em;
+    font-size: 1em;
+    margin: 0 0.5em;
+    cursor: pointer;
+    background-color: #fff;
+    transition: 0.4s;
+    border-radius: 7px;
+}
+
+button fa-icon,
+a fa-icon {
+    margin-right: 0.2em;
+}
+
+.edit-btn,
+.edit-btn path {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.edit-btn:hover,
+.edit-btn:hover path {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.remove-btn,
+.remove-btn path {
+    border-color: #DC3545;
+    color: #DC3545;
+}
+
+.remove-btn:hover,
+.remove-btn:hover path {
+    color: #fff;
+    background-color: #DC3545;
+}
+
+.back-btn,
+.back-btn path {
+    border-color: #c0a208;
+    color: #c0a208;
+}
+
+.back-btn:hover,
+.back-btn:hover path {
+    color: #fff;
+    background-color: #dec129;
+}

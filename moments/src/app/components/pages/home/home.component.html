@@ -1,0 +1,30 @@
+<div class="home-container" relo>
+    <h1>Veja o que estão compartilhando</h1>
+    <div class="search-container">
+        <form>
+            <fa-icon [icon]="faSearch"></fa-icon>      
+            <input type="text" placeholder="Pesquise Momentos" (input)="search($event)">
+        </form>
+    </div>
+    <div *ngIf="moments.length > 0; else noMoments">
+        <div class="moments-container">
+            <div class="moment" *ngFor="let moment of moments">
+                <a routerLink="/moments/{{moment.id}}">
+                    <img src="{{baseApiUrl}}uploads/{{moment.image}}" alt="imagem do momento {{moment.title}}" *ngIf="moment.image">
+                </a>
+                <h3>{{ moment.title }}</h3>
+                <p class="date"> Postado em: {{moment.created_at}}</p>
+                <p class="date"> Ocorrido em: {{ moment.date | date: 'dd/MM/yyyy' }}</p>
+                <p>Comentários: {{ moment.comments!.length }}</p>
+                <p><a routerLink="/moments/{{moment.id}}">Detalhes</a></p>
+            </div>   
+        </div>
+        
+    </div>
+
+    <ng-template #noMoments>
+        <p>Ainda não há momentos registrados</p>
+        <a routerLink="/moments/new">Registre um momento</a>
+    </ng-template>
+        
+</div>
